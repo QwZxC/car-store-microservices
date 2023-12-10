@@ -1,7 +1,7 @@
 package com.example.userservice.domain.exception.handler;
 
 import com.example.userservice.domain.exception.ErrorResponse;
-import com.example.userservice.domain.exception.types.PersonNotFoundException;
+import com.example.userservice.domain.exception.types.UserNotFoundException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -13,11 +13,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
-public class PersonExceptionHandler  extends ResponseEntityExceptionHandler {
+public class UserExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(PersonNotFoundException.class)
+    @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorResponse> handleNotFoundException(PersonNotFoundException ex) {
+    public ResponseEntity<ErrorResponse> handleNotFoundException(UserNotFoundException ex) {
         ErrorResponse response = new ErrorResponse(
                 HttpStatus.NOT_FOUND,
                 ex.getMessage()

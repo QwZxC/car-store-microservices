@@ -1,6 +1,7 @@
 package com.example.userservice.service.impl;
 
 import com.example.userservice.domain.entity.User;
+import com.example.userservice.domain.exception.types.UserNotFoundException;
 import com.example.userservice.repository.UserRepository;
 import com.example.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByUuid(UUID uuid) {
-        return ;
+        return userRepository.findById(uuid).orElseThrow(UserNotFoundException::new);
     }
 
     @Override
