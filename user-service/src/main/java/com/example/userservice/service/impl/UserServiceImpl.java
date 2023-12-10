@@ -22,21 +22,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByUsername(String username) {
-        return null;
+        return userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
     }
 
     @Override
     public User update(User user) {
-        return null;
+        return userRepository.save(user);
     }
 
     @Override
     public User create(User user) {
-        return null;
+        return userRepository.save(user);
     }
 
     @Override
-    public void delete(UUID uuid) {
-
+    public void deleteByUuid(UUID uuid) {
+        userRepository.deleteById(uuid);
     }
 }

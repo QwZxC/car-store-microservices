@@ -14,5 +14,5 @@ public interface UserService {
 
     User create(User user);
 
-    void delete(UUID uuid);
+    void deleteByUuid(UUID uuid);
 }
