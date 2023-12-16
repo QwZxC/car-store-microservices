@@ -4,7 +4,10 @@ import com.example.userservice.domain.entity.User;
 import com.example.userservice.domain.exception.types.UserNotFoundException;
 import com.example.userservice.repository.UserRepository;
 import com.example.userservice.service.UserService;
+import com.example.userservice.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -14,6 +17,7 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public User getByUuid(UUID uuid) {
@@ -31,8 +35,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(User user) {
-        return userRepository.save(user);
+    @KafkaListener(topics = "userTopic", containerFactory = "createUserFactory")
+    public void create(UserDto dto) {
+        userRepository.save(
+                modelMapper.map(dto, User.class)
+        );
     }
 
     @Override

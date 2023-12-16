@@ -1,4 +1,4 @@
-package com.example.userservice.domain.exception;
+package com.example.authservice.domain.exception.format;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

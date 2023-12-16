@@ -1,7 +1,7 @@
-package com.example.userservice.domain.exception.handler;
+package com.example.authservice.domain.exception.handler;
 
-import com.example.userservice.domain.exception.format.ErrorResponse;
-import com.example.userservice.domain.exception.types.UserNotFoundException;
+import com.example.authservice.domain.exception.format.ErrorResponse;
+import com.example.authservice.domain.exception.types.UserNotFoundException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
